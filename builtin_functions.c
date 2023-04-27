@@ -79,6 +79,8 @@ int get_builtin(char **command, char *line)
 		{NULL, NULL}
 	};
 
+	build = NULL;
+
 	for (i = 0; buildin[i].type != NULL; i++)
 	{
 		if (_strcmp(command[0], buildin[i].type) == 0)

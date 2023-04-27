@@ -29,7 +29,7 @@ void parse_line(char *line, size_t size, int commands_count, char **argv)
 		}
 		i = get_builtin(tokens_array, line);
 		if (i == -1)
-			create_fork(tokens_array, line, tokens_count, argv);
+			create_fork(tokens_array, line, commands_count, argv);
 		for (i = 0; tokens_array[i] != NULL; i++)
 			free(tokens_array[i]);
 		free_single_pointer(2, tokens_array, line);
