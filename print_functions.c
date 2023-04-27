@@ -1,10 +1,11 @@
-#include "shell.h";
+#include "shell.h"
 
 /**
  * print_char - prints a char
  * @c: line char
  * Return: number of chars
  */
+
 int print_char(char c)
 {
 	return (write(1, &c, 1));
@@ -15,6 +16,7 @@ int print_char(char c)
  * @str: line string
  * @plus_new_line: if 1 print new line otherwise just the string
  */
+
 void print_str(char *str, int plus_new_line)
 {
 	int i;
@@ -26,11 +28,13 @@ void print_str(char *str, int plus_new_line)
 	if (plus_new_line == 1)
 		write(1, "\n", 1);
 }
+
 /**
  * print_num - prints an unsigned number
  * @n: line int
  * Return: size of number printed
  */
+
 int print_num(int n)
 {
 	int len = 0, divisor = 1;
@@ -51,13 +55,13 @@ int print_num(int n)
 	return (len);
 }
 
-
 /**
  * print_error - prints error message when command is not found.
  * @arg: name of the shell program.
  * @count: commands count
  * @command: line command
  */
+
 void print_error(char *arg, int count, char *command)
 {
 	print_str(arg, 0);

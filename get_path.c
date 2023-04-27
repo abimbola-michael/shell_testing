@@ -1,25 +1,25 @@
-#include "shell.h";
+#include "shell.h"
 
 /**
  * get_command_path - get the directory of command and merges with command
  * @command: input command
  * Return: full command path
  */
+
 char *get_command_path(char *command)
 {
 	char *str = "PATH";
 	char **path_tokens;
-    char *full_path;
+	char *full_path;
 	int path_index;
 	char *directory;
-    char *env_variable;
+	char *env_variable;
 	int token_count = 0;
-    int len;
+	int len;
 	const char *delim = ":\n";
-	char **path_tokens;
 
 	path_index = search_path(str);
-    len = _strlen(str);
+	len = _strlen(str);
 	env_variable = environ[path_index] + (len + 1);
 	path_tokens = get_tokens(env_variable, delim, token_count);
 	if (path_tokens == NULL)
@@ -43,11 +43,13 @@ char *get_command_path(char *command)
 
 	return (full_path);
 }
+
 /**
  * search_path - finds index of an environmental variable.
  * @str: input string
  * Return: if successful returns the right environmental variable index
  */
+
 int search_path(char *str)
 {
 	int i;
@@ -115,10 +117,11 @@ char *search_directories(char **path_tokens, char *command)
  * @command: input command
  * Return: full command path if success else NULL
  */
+
 char *build_path(char *directory, char *command)
 {
 	int i, j;
-    int len;
+	int len;
 	char *full_path;
 
 	if (directory == NULL || command == NULL)

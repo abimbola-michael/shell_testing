@@ -1,12 +1,13 @@
-#include "shell.h";
+#include "shell.h"
+
 /**
- * cd - function to change the current working directory
+ * cd_builtin - function to change the current working directory
  * @line: command line string
- * 
 */
-void cd(char *line)
+
+void cd_builtin(char *line)
 {
-    int i, tokens_count = 0;
+	int i, tokens_count = 0;
 	char **tokens_array;
 	const char *delim = "\n\t ";
 
@@ -18,7 +19,7 @@ void cd(char *line)
 	}
 	if (tokens_array[1] == NULL)
 	{
-		i = get_path("HOME");
+		i = search_path("HOME");
 		chdir((environ[i]) + 5);
 	}
 	else if (_strcmp(tokens_array[1], "-") == 0)
@@ -27,14 +28,14 @@ void cd(char *line)
 	else
 		chdir(tokens_array[1]);
 	free_double_pointer(tokens_array);
-    
 }
 
 /**
- * env - function that prints all the environmental variables.
+ * env_builtin - function that prints all the environmental variables.
  * @line: command line string
  */
-void env(__attribute__((unused))char *line)
+
+void env_builtin(__attribute__((unused))char *line)
 {
 	int i;
 	int j;
@@ -48,10 +49,11 @@ void env(__attribute__((unused))char *line)
 }
 
 /**
- * exit - Exits the shell. After freeing allocated resources.
+ * exit_builtin - Exits the shell. After freeing allocated resources.
  * @line: command line string
  */
-void exit(char *line)
+
+void exit_builtin(char *line)
 {
 	free(line);
 	print_str("\n", 0);
@@ -65,14 +67,15 @@ void exit(char *line)
  * @line: command line string
  * Return: if found function 0 else -1
  */
+
 int get_builtin(char **command, char *line)
 {
 	int i;
 	void (*build)(char *);
 	builtin_t buildin[] = {
-		{"cd", cd},
-		{"env", env},
-		{"exit", exit},
+		{"cd", cd_builtin},
+		{"env", env_builtin},
+		{"exit", exit_builtin},
 		{NULL, NULL}
 	};
 

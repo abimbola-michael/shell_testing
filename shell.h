@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <sys/types.h>
-#include <sys/types.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <signal.h>
@@ -17,6 +17,7 @@
  * @type: builtin type.
  * @func: pointer to builtin function.
  */
+
 typedef struct builtin_s
 {
 	char *type;
@@ -40,16 +41,16 @@ void free_single_pointer(int, ...);
 void free_double_pointer(char **);
 
 /*Builtin functions*/
-void cd(char *);
-void exit(char *);
-void env(char *);
+void cd_builtin(char *);
+void exit_builtin(char *);
+void env_builtin(char *);
 int get_builtin(char **command, char *arg);
 
 /*Other Functions*/
 char **get_tokens(char *, const char *, int);
 int count_tokens(char *, const char *);
 void create_fork(char **, char *, int, char **);
-void parse_command_line(char *, size_t, int, char **);
+void parse_line(char *, size_t, int, char **);
 char *get_command_path(char *);
 int search_path(char *);
 char *search_directories(char **, char *);

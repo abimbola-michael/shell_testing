@@ -1,10 +1,11 @@
-#include "shell.h";
+#include "shell.h"
 
 /**
  * _strlen - calculates the length of a string.
  * @str: line string.
  * Return: string length or 0 if null.
  */
+
 int _strlen(char *str)
 {
 	int i = 0;
@@ -12,17 +13,19 @@ int _strlen(char *str)
 	if (str == NULL)
 		return (0);
 	while (str[i])
-    {
-        i++;
-    }
-		
+	{
+		i++;
+	}
+
 	return (i);
 }
+
 /**
  * _strdup - duplicates a string
  * @src: line string
  * Return: copy of string
  */
+
 char *_strdup(char *src)
 {
 	int i, len;
@@ -36,12 +39,14 @@ char *_strdup(char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
 /**
  * _strcmp - compares two strings for match
  * @s1: first line string
  * @s2: second line string
  * Return: 0 if match and -1 if not.
  */
+
 int _strcmp(char *s1, char *s2)
 {
 	int i;

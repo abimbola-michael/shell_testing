@@ -1,9 +1,10 @@
-#include "shell.h";
+#include "shell.h"
 
 /**
  * free_single_pointer - frees a single pointer.
  * @n: number of pointers to free.
  */
+
 void free_single_pointer(int n, ...)
 {
 	int i;
@@ -25,6 +26,7 @@ void free_single_pointer(int n, ...)
  * free_double_pointer - frees double pointer.
  * @pointer: line pointer
  */
+
 void free_double_pointer(char **pointer)
 {
 	int i;

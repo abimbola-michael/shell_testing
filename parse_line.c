@@ -1,16 +1,17 @@
-#include "shell.h";
+#include "shell.h"
 
 /**
- * parse_command_line - Parses the command line
+ * parse_line - Parses the command line
  * @line: line string.
  * @size: size and initially 0.
  * @commands_count: commands count
  * @argv: name of command line
  */
-void parse_command_line(char *line, size_t size, int commands_count, char **argv)
+
+void parse_line(char *line, size_t size, int commands_count, char **argv)
 {
 	int i;
-    char *cmd_prompt = "($) ";
+	char *cmd_prompt = "($) ";
 	ssize_t read_len;
 	int tokens_count = 0;
 	char **tokens_array;
@@ -34,7 +35,9 @@ void parse_command_line(char *line, size_t size, int commands_count, char **argv
 		free_single_pointer(2, tokens_array, line);
 	}
 	else
-		exit_b(line);
+	{
+		exit_builtin(line);
+	}
 }
 
 /**
@@ -44,12 +47,14 @@ void parse_command_line(char *line, size_t size, int commands_count, char **argv
  * @commands_count: commands count
  * @argv: name of command line
  */
-void create_fork(char **tokens_array, char *line, int commands_count, char **argv)
+
+void create_fork(char **tokens_array, char *line, int commands_count,
+		char **argv)
 {
 	pid_t id;
-    int i;
+	int i;
 	int status;
-	int check;
+	int dir_check;
 	struct stat buffer;
 	char *command;
 	char *command_template;
@@ -61,8 +66,8 @@ void create_fork(char **tokens_array, char *line, int commands_count, char **arg
 		command = get_command_path(tokens_array[0]);
 		if (command == NULL)
 		{
-			check = stat(tokens_array, &buffer);
-			if (check == -1)
+			dir_check = stat(command_template, &buffer);
+			if (dir_check == -1)
 			{
 				print_error(argv[0], commands_count, command_template);
 				print_str(": not found", 1);
@@ -82,5 +87,7 @@ void create_fork(char **tokens_array, char *line, int commands_count, char **arg
 		}
 	}
 	else
+	{
 		wait(&status);
+	}
 }

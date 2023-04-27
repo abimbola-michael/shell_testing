@@ -1,4 +1,4 @@
-#include "shell.h";
+#include "shell.h"
 
 /**
  * count_tokens - counts arguments passed to the shell.
@@ -6,6 +6,7 @@
  * @delim:  delimeter used to separate the tokens.
  * Return: total args count or -1 if fails.
  */
+
 int count_tokens(char *line, const char *delim)
 {
 	char *str;
@@ -29,6 +30,7 @@ int count_tokens(char *line, const char *delim)
  * @token_count: tokens count
  * Return: array of tokens if success else null
  */
+
 char **get_tokens(char *line, const char *delim, int token_count)
 {
 	int i;
@@ -36,7 +38,7 @@ char **get_tokens(char *line, const char *delim, int token_count)
 	char *token;
 	char *line_cpy;
 
-	token_count = count_token(line, delim);
+	token_count = count_tokens(line, delim);
 	if (token_count == -1)
 	{
 		free(line);
